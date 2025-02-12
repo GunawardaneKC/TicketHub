@@ -1,0 +1,57 @@
+.carodiv {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.carousel-container {
+    position: relative;
+    width: 50vh;
+    height: 60vh;
+  }
+  
+  @media (min-width: 460px) {
+    .carousel-container {
+      width: 50vh;
+      height: 60vh;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .carousel-container {
+      width: 45vh;
+      height: 55vh;
+    }
+
+    .carodiv {
+        width: 100%;
+        height: 55vh;
+      }
+}
+
+  @media (max-width: 350px) {
+    .carousel-container {
+      width: 50vh;
+      height: 60vh;
+    }
+
+    .carodiv {
+        width: 100%;
+        height: 60vh;
+      }
+}
+
+  @media (max-width: 250px) {
+    .carousel-container {
+      width: 25vh;
+      height: 40vh;
+    }
+
+    .carodiv {
+      width: 100%;
+      height: 40vh;
+    }
+  }
