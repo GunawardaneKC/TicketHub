@@ -11,6 +11,7 @@ import React from 'react'
 const ProfilePage = async ({ searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
+  const UID = userId;
 
   const ordersPage = Number(searchParams?.ordersPage) || 1;
   const eventsPage = Number(searchParams?.eventsPage) || 1;
@@ -22,6 +23,8 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
 
   return (
     <>
+    {UID !== '676f220ea95bb49e64f65ad6' && (
+      <>
       {/* My Tickets */}
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <div className="wrapper flex items-center justify-center sm:justify-between">
@@ -46,7 +49,11 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           totalPages={orders?.totalPages}
         />
       </section>
+      </>
+      )}
 
+      {UID === '676f220ea95bb49e64f65ad6' && (
+      <>
       {/* Events Organized */}
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <div className="wrapper flex items-center justify-center sm:justify-between">
@@ -71,6 +78,8 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           totalPages={organizedEvents?.totalPages}
         />
       </section>
+      </>
+      )}
     </>
   )
 }
