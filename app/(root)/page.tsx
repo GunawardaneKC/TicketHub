@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { getAllEvents } from '@/lib/actions/event.actions';
 import { SearchParamProps } from '@/types';
 import Link from 'next/link';
-import Carousel from '@/components/shared/Carousel'; // Import the custom Carousel component
+import Carousel from '@/components/shared/Carousel'; // Import the custom Carousel component...
 
 export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
