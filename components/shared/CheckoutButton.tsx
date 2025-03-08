@@ -6,8 +6,9 @@ import Link from 'next/link'
 import React from 'react'
 import { Button } from '../ui/button'
 import Checkout from './Checkout'
+import { IOrderItem } from '@/lib/database/models/order.model'
 
-const CheckoutButton = ({ event }: { event: IEvent }) => {
+const CheckoutButton = ({ event, orders }: { event: IEvent, orders: IOrderItem[] }) => {
   const { user } = useUser();
   const userId = user?.publicMetadata.userId as string;
   const hasEventFinished = new Date(event.endDateTime) < new Date();
@@ -18,17 +19,25 @@ const CheckoutButton = ({ event }: { event: IEvent }) => {
         <p className="p-2 text-red-400">Sorry, tickets are no longer available.</p>
       ): (
         <>
-          <SignedOut>
-            <Button variant="custom" asChild className="button rounded-full" size="lg">
-              <Link href="/sign-in">
-                Get Tickets
-              </Link>
-            </Button>
-          </SignedOut>
+          {orders.length >= parseInt(event.maxCount) ? (
+          <button className="bg-red-600 text-white rounded-full p-2 cursor-not-allowed" disabled>
+            Sold Out
+          </button>
+        ) : (
+          <>
+            <SignedOut>
+              <Button variant="custom" asChild className="button rounded-full" size="lg">
+                <Link href="/sign-in">
+                  Get Tickets
+                </Link>
+              </Button>
+            </SignedOut>
 
-          <SignedIn>
-            <Checkout event={event} userId={userId} />
-          </SignedIn>
+            <SignedIn>
+              <Checkout event={event} userId={userId} />
+            </SignedIn>
+          </>
+        )}
         </>
       )}
     </div>

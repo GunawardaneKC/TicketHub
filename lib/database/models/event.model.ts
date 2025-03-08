@@ -10,6 +10,7 @@ export interface IEvent extends Document {
   startDateTime: Date;
   endDateTime: Date;
   price: string;
+  maxCount: string;
   isFree: boolean;
   url?: string;
   category: { _id: string, name: string }
@@ -25,6 +26,7 @@ const EventSchema = new Schema({
   startDateTime: { type: Date, default: Date.now },
   endDateTime: { type: Date, default: Date.now },
   price: { type: String },
+  maxCount: { type: String },
   isFree: { type: Boolean, default: false },
   url: { type: String },
   category: { type: Schema.Types.ObjectId, ref: 'Category' },

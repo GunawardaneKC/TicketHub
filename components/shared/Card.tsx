@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { DeleteConfirmation } from './DeleteConfirmation'
+import { getOrdersByEvent } from '@/lib/actions/order.actions'
 
 type CardProps = {
   event: IEvent,
@@ -12,11 +13,15 @@ type CardProps = {
   hidePrice?: boolean
 }
 
-const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
+const Card = async ({ event, hasOrderLink, hidePrice }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
   const isEventCreator = userId === event.organizer._id.toString();
+  
+  const eventId = (event?._id as string) || '';
+  const searchText = '';
+  const orders = await getOrdersByEvent({ eventId, searchString: searchText })
 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[300px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[538px]">
@@ -66,8 +71,10 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
             LKR {event.price}/=
           </p>
           <a href={`/events/${event._id}`} className="flex gap-2">
-                           <button className="bg-green-600 text-white rounded-lg p-2">Buy Tickets</button>
-              </a>
+            <button className={`text-white rounded-lg p-2 ${orders.length >= event.maxCount ? 'bg-red-600' : 'bg-green-600'}`}>
+              {orders.length >= event.maxCount ? 'Sold Out' : `Buy Tickets` }
+            </button>
+          </a>
         </div> 
 
         

@@ -27,6 +27,7 @@ export type CreateEventParams = {
     endDateTime: Date
     categoryId: string
     price: string
+    maxCount: string
     isFree: boolean
     url: string
   }
@@ -45,6 +46,7 @@ export type UpdateEventParams = {
     endDateTime: Date
     categoryId: string
     price: string
+    maxCount: string
     isFree: boolean
     url: string
   }

@@ -10,5 +10,6 @@ export const eventFormSchema = z.object({
   categoryId: z.string(),
   price: z.string(),
   isFree: z.boolean(),
+  maxCount: z.string().min(1, 'Max count must be at least 1'),
   url: z.string().url()
 })

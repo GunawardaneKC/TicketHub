@@ -293,29 +293,54 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                 </FormItem>
               )}
             />   
+            <FormField
+               control={form.control}
+               name="maxCount"
+               render={({ field }) => (
+                 <FormItem className="w-full">
+                   <FormControl>
+                     <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
+                       <Image
+                         src="/assets/icons/ticket.svg"
+                         alt="link"
+                         width={24}
+                         height={24}
+                       />
+ 
+                       <Input type="number" placeholder="Maximum Ticket" {...field} className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"  />
+                     </div>
+ 
+                   </FormControl>
+                   <FormMessage />
+                 </FormItem>
+               )}
+             />
+         </div>
+ 
+         <div className="flex flex-col gap-5 md:flex-row">
            <FormField
-              control={form.control}
-              name="url"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormControl>
-                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                      <Image
-                        src="/assets/icons/link.svg"
-                        alt="link"
-                        width={24}
-                        height={24}
-                      />
-
-                      <Input placeholder="URL" {...field} className="input-field" />
-                    </div>
-
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-        </div>
+             control={form.control}
+             name="url"
+             render={({ field }) => (
+               <FormItem className="w-full">
+                 <FormControl>
+                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
+                     <Image
+                       src="/assets/icons/link.svg"
+                       alt="link"
+                       width={24}
+                       height={24}
+                     />
+ 
+                     <Input placeholder="URL" {...field} className="input-field" />
+                   </div>
+ 
+                 </FormControl>
+                 <FormMessage />
+               </FormItem>
+             )}
+           />
+         </div>
 
 
         <Button 

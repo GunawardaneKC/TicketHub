@@ -4,6 +4,7 @@ import { getEventById, getRelatedEventsByCategory } from '@/lib/actions/event.ac
 import { formatDateTime } from '@/lib/utils';
 import { SearchParamProps } from '@/types'
 import Image from 'next/image';
+import { getOrdersByEvent } from '@/lib/actions/order.actions';
 
 const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const event = await getEventById(id);
@@ -13,6 +14,10 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
     eventId: event._id,
     page: searchParams.page as string,
   })
+  
+  const eventId = (event?._id as string) || '';
+  const searchText = '';
+  const orders = await getOrdersByEvent({ eventId, searchString: searchText })
 
   return (
     <>
@@ -47,7 +52,7 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
             </div>
           </div>
 
-          <CheckoutButton event={event} />
+          <CheckoutButton event={event} orders={orders} />
 
           <div className="flex flex-col gap-5">
             <div className='flex gap-2 md:gap-3'>
