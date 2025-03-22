@@ -36,7 +36,7 @@
     "react-icons": "^5.4.0",
     "react-responsive-carousel": "^3.2.23",
     "stripe": "^14.8.0",
-    "svix": "^1.15.0",
+    "svix": "^1.62.0",
     "swiper": "^11.2.2",
     "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7",
